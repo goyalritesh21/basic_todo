@@ -1,0 +1,126 @@
+var time = 0
+
+var timer = setInterval(function () {
+    time += 2;
+    console.log( time + " seconds have passed");
+    if(time > 5){
+        clearInterval(timer);
+    }
+}, 2000);
+
+console.log(__dirname);
+console.log(__filename);
+
+var sayHi = function () {
+    console.log("hi");
+}
+
+function call(funct) {
+    funct();
+}
+
+call(sayHi);
+
+var stuff = require('./stuff');
+
+console.log(stuff.counter(["Ritesh" , "mayank"]));
+console.log(stuff.adder(stuff.pi,3));
+console.log(stuff.pi);
+
+var fs = require('fs');
+var readMe = fs.readFileSync('readMe.txt', 'utf8');
+
+fs.readFile('readMe.txt', 'utf8', function (err, data) {
+    fs.writeFile('writeMe.txt', data, function () {
+        console.log('File written successfully!');
+    });
+});
+
+console.log('test');
+fs.writeFileSync('writeMe.txt', readMe);
+
+
+Above till Tutorial 11.
+
+var http = require('http');
+
+var fs = require('fs');
+
+var myReadStream = fs.createReadStream(__dirname + '/readMe.txt', 'utf8');
+var myWriteStream = fs.createWriteStream(__dirname + '/writeMe.txt');
+
+myReadStream.on('data', function (chunk) {
+    console.log('New chunk recieved');
+    myWriteStream.write(chunk);
+})
+
+var server = http.createServer(function (req, res) {
+    console.log('request was made: ' + req.url);
+    res.writeHead(200, {'content-Type': 'text/plain'});
+    res.end('Hey! I am Ritesh Goyal');
+});
+
+server.listen(3000, '127.0.0.1');
+console.log('Listening');
+
+Above till Tutorial 15.
+
+var http = require('http');
+
+var fs = require('fs');
+
+var server = http.createServer(function (req, res) {
+    console.log('request was made: ' + req.url);
+    res.writeHead(200, {'content-Type': 'text/html'});
+    var myReadStream = fs.createReadStream(__dirname + '/index.html', 'utf8');
+    myReadStream.pipe(res);
+});
+
+server.listen(3000, '127.0.0.1');
+console.log('Listening');
+
+Above till Tutorial 17.
+
+var http = require('http');
+
+var fs = require('fs');
+
+var server = http.createServer(function (req, res) {
+    console.log('request was made: ' + req.url);
+    res.writeHead(200, {'content-Type': 'application/json'});
+    var myObj = {
+        name: 'Ritesh',
+        job: 'Student',
+        age: '20'
+    };
+    res.end(JSON.stringify(myObj));
+});
+
+server.listen(3000, '127.0.0.1');
+console.log('Listening');
+
+Above till Tutorial 18.
+
+var http = require('http');
+
+var fs = require('fs');
+
+var server = http.createServer(function (req, res) {
+    console.log('request was made: ' + req.url);
+    if(req.url === '/home' || req.url === '/'){
+        res.writeHead(200, {'content-Type' : 'text/html'});
+        fs.createReadStream(__dirname + '/index.html').pipe(res);
+    }
+    else if(req.url === '/contact'){
+        res.writeHead(200, {'content-Type' : 'text/html'});
+        fs.createReadStream(__dirname + '/contact.html').pipe(res);
+    }
+});
+
+server.listen(3000, '127.0.0.1');
+console.log('Listening');
+
+Above till tut 19.
+
+
+

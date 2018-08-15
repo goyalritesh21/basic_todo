@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+Tutorial_progress.txt
+writeMe.txt
+readMe.txt
+.gitignore
