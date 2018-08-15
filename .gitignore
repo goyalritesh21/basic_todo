@@ -62,4 +62,5 @@ typings/
 Tutorial_progress.txt
 writeMe.txt
 readMe.txt
-.gitignore
+/.gitignore
+.idea/
